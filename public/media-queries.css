@@ -1,0 +1,62 @@
+/************************************************************************************
+smaller than 980
+*************************************************************************************/
+@media screen and (max-width: 1980px) {
+  .nav {
+    display: none;
+  }
+}
+
+/************************************************************************************
+smaller than 650
+*************************************************************************************/
+@media screen and (max-width: 480px) {
+
+  .nav {
+    display:block;
+  }
+
+  /* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+  /* Hide page title and table header*/
+  thead {
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+  }
+
+  /* Set border for eeach row*/
+  tr {
+    border: 1px solid #ccc;
+  }
+
+  /* Behave  like a "row" */
+  td {
+    border: 1px solid;
+    position: relative;
+    text-align:center;
+  }
+
+  td:before {
+    top: 10px;
+    left: 10px;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  .collapsed {
+    display: none;
+  }
+
+  #nextLink {
+    float: right;
+
+  }
+
+  td:nth-of-type(3):before {content: 'Minimum Deposit: '; }
+  td:nth-of-type(4):before { content: 'Interest type: '; }
+
+}

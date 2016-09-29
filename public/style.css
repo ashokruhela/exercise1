@@ -1,0 +1,32 @@
+body {
+  font: Helvetica;
+  font-size: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Zebra striping */
+
+tr:nth-of-type(odd) {
+  background: #eee;
+}
+
+
+th {
+  font: Helvetica;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #008c85;
+  color: #e4efee;
+}
+
+td, th {
+  padding: 6px;
+  text-align: left;
+}
+.nav {
+  display: none;
+}
