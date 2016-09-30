@@ -48,10 +48,13 @@ function addProducts(products) {
     typeCell.innerHTML = products[i].interestType;
 
   }
-  setLinkCaptions(products[products.length -1].name, products[1].name);
+  //products[products.length -1].name
+  setLinkCaptions("", products[1].name);
 }
 
 function onNextClick (e) {
+  var prevLinkCaption = "";
+  var nextLinkCaption = "";
   var productTable = document.getElementById('productTable');
   var items = document.getElementsByClassName('currentRecord');
   var currentRow = items[0];
@@ -60,20 +63,67 @@ function onNextClick (e) {
   if(currentRowIndex != productTable.rows.length - 1) {
     nextRowInex = parseInt(currentRowIndex) + 1;
   }
+
+  if(nextRowInex < productTable.rows.length - 1) {
+    nextLinkCaption = productTable.rows[nextRowInex + 1].dataset.productName;
+    prevLinkCaption = currentRow.dataset.productName;
+  } else if(nextRowInex == productTable.rows.length - 1) {
+    prevLinkCaption = productTable.rows[1].dataset.productName;
+  }
+
+
   productTable.rows[nextRowInex].setAttribute('class', 'currentRecord');
-  setLinkCaptions(currentRow.dataset.productName, productTable.rows[(nextRowInex + 1) < productTable.rows.length ? nextRowInex + 1 : 1 ].dataset.productName);
+
+
+  setLinkCaptions(prevLinkCaption, nextLinkCaption);
   currentRow.setAttribute('class', 'collapsed');
 }
 
 function onPrevClick (e) {
-  alert('previous clicked');
+  var prevLinkCaption = "";
+  var nextLinkCaption = "";
+  var productTable = document.getElementById('productTable');
+  var items = document.getElementsByClassName('currentRecord');
+  var currentRow = items[0];
+  var currentRowIndex = parseInt(currentRow.dataset.rowIndex) ;
+  var prevRowInex = productTable.rows.length - 1;
+  if(currentRowIndex > 1) {
+    prevRowInex = currentRowIndex - 1;
+  }
+  //set captions
+  if(prevRowInex > 1) {
+    prevLinkCaption = productTable.rows[prevRowInex - 1].dataset.productName;
+    nextLinkCaption = currentRow.dataset.productName;
+  } else{
+    nextLinkCaption = productTable.rows[2].dataset.productName;
+  }
+
+
+  productTable.rows[prevRowInex].setAttribute('class', 'currentRecord');
+  setLinkCaptions(prevLinkCaption, nextLinkCaption);
+  currentRow.setAttribute('class', 'collapsed');
 }
 
 function setLinkCaptions(prevButton, nextButton) {
   var prevLink = document.getElementById('prevLink');
   var nextLink = document.getElementById('nextLink');
-  prevLink.value = "< " + prevButton;
-  nextLink.value = nextButton + " >";
+
+  //If cantion is blank then button has to be hidden
+  if(prevButton == "")
+    prevLink.style.display = 'none';
+  else {
+    prevLink.value = "< " + prevButton;
+    prevLink.style.display = 'block';
+  }
+
+
+  if(nextButton == "")
+    nextLink.style.display = 'none';
+  else {
+    nextLink.value = nextButton + " >";
+    nextLink.style.display = 'block';
+  }
+
 }
 
 getProducts();
