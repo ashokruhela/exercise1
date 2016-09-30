@@ -8,8 +8,6 @@ table {
   border-collapse: collapse;
 }
 
-/* Zebra striping */
-
 tr:nth-of-type(odd) {
   background: #eee;
 }
@@ -28,53 +26,45 @@ td, th {
   text-align: left;
 }
 .nav {
-  display: inline;
+  display: none;
 }
-@media screen and (max-width: 580px) {
+
+@media screen and (max-width: 500px) {
 
   .nav {
     display:block;
   }
-
   /* Force table to not be like tables anymore */
 	table, thead, tbody, th, td, tr {
 		display: block;
 	}
-
   /* Hide page title and table header*/
-  thead {
-    position: absolute;
-    top: -9999px;
-    bottom: -9999px;
-  }
-
-  /* Set border for eeach row*/
+ thead {
+   display: none;
+ }
+ /* Set border for eeach row*/
   tr {
     border: 1px solid #ccc;
   }
-
   /* Behave  like a "row" */
   td {
     border: 1px solid;
     position: relative;
     text-align:center;
   }
-
   td:before {
     top: 10px;
     left: 10px;
     padding-right: 10px;
     white-space: nowrap;
   }
-
   .collapsed {
-    display: none;
+   display: none;
+ }
+ #nextLink {
+   margin-top: 2px;
+   float: right;
   }
-
-  #nextLink {
-  }
-
   td:nth-of-type(3):before {content: 'Minimum Deposit: '; }
   td:nth-of-type(4):before { content: 'Interest type: '; }
-
 }
